@@ -1,16 +1,18 @@
-version: "3.9"
+version: '3.9'
 services:
-  todo-drizzle:
-    image: postgres
-    restart: always
-    container_name: todo-drizzle
-    ports:
-      - 5432:5432
+  postgres:
+    image: postgres:15-alpine
     environment:
-      POSTGRES_PASSWORD: example
-      PGDATA: /data/postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
     volumes:
-      - postgres:/data/postgres
+      - postgres_data:/var/lib/postgresql/data 
+networks:
+  app-network:
 
 volumes:
-  postgres:
+  postgres_data:  
