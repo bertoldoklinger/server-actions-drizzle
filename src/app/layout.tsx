@@ -1,3 +1,5 @@
+import Header from '@/components/header'
+import Sidebar from '@/components/sidebar'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -15,10 +17,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,#36D7A1,rgba(255,255,255,0))]">
-          <div className="p-6">{children}</div>
+        <div>
+          <Header />
+          <div className="flex h-screen border-collapse overflow-hidden">
+            <Sidebar />
+            <main className="flex-1 overflow-y-auto overflow-x-hidden pt-16 bg-[#F7F7F7] pb-1">
+              {children}
+            </main>
+          </div>
         </div>
       </body>
     </html>
